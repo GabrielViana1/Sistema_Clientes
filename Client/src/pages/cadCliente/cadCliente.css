@@ -1,0 +1,11 @@
+.cnpj {
+    display: none;
+}
+
+.modal-backdrop {
+    display: none;
+}
+
+#tipoCliente {
+    cursor: pointer;
+}
