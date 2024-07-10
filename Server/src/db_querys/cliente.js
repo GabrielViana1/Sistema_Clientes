@@ -5,19 +5,20 @@ const db = require('../database/dbConnection');
 class Cliente {
 
     // Construtor da classe Cliente, recebe Nome, cpf e cnpj como parâmetros.
-    constructor(id, nome, cpf, cnpj) {
+    constructor(id, nome, cpf, cnpj, tipo) {
         this.id = id
         this.nome = nome; // Atributo Nome do cliente.
         this.cnpj = cnpj.replace(/[^\d]/g, "") // Atributo CNPJ do cliente, sem caracteres não numéricos.
         this.cpf = cpf.replace(/[^\d]/g, "") // Atributo CPF do cliente, sem caracteres não numéricos.
+        this.tipo = tipo // Atributo tipo do cliente.
     }
 
     // Método para cadastrar um novo cliente na base de dados.
-    static async cadastrarCliente(nome, cpf, cnpj) {
+    static async cadastrarCliente(nome, cpf, cnpj, tipo) {
         try {
             const result = await db.query(`
-                INSERT INTO clientes (Nome, cpf, cnpj)
-                VALUES ('${nome}', '${cpf}', '${cnpj}')
+                INSERT INTO clientes (Nome, cpf, cnpj, tipo)
+                VALUES ('${nome}', '${cpf}', '${cnpj}', '${tipo}')
             `);
             return result; // Retorna o resultado do cadastro.
         } catch (error) {

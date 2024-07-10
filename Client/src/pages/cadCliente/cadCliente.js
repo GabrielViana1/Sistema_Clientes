@@ -132,7 +132,7 @@ document.querySelector('#btnCadCliente').addEventListener('click', async (e) => 
             const cpfFormatado = cpf.value.replace(/[^\d]/g, ""); // Removendo caracteres especiais 
             const verificarDoc = await VerificaDoc.validarCpf(cpfFormatado);
             if (verificarDoc) {
-                const cadastro = await CadCliente.cadastrarCliente(nome.value, cpfFormatado, cnpj.value);
+                const cadastro = await CadCliente.cadastrarCliente(nome.value, cpfFormatado, cnpj.value, 'Física');
                 if (cadastro.status === 200) {
                     msgPopup.innerText = 'Cadastro realizado com sucesso!';
 
@@ -178,7 +178,7 @@ document.querySelector('#btnCadCliente').addEventListener('click', async (e) => 
             const cnpjFormatado = cnpj.value.replace(/[^\d]/g, ""); // Removendo caracteres especiais 
             const verificarDoc = await VerificaDoc.validarCnpj(cnpjFormatado);
             if (verificarDoc) {
-                const cadastro = await CadCliente.cadastrarCliente(nome.value, cpf.value, cnpjFormatado);
+                const cadastro = await CadCliente.cadastrarCliente(nome.value, cpf.value, cnpjFormatado, 'Jurídica');
                 if (cadastro.status === 200) {
                     msgPopup.innerText = 'Cadastro realizado com sucesso!';
 

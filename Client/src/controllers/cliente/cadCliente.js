@@ -4,14 +4,15 @@ import Popup from '../../manipularForms/popup.js';
 
 // Definindo a classe CadCliente para realizar o cadastro de clientes.
 class CadCliente {
-    constructor(Nome, CPF, CNPJ) {
+    constructor(Nome, CPF, CNPJ, tipo) {
         this.Nome = Nome,
         this.CPF = CPF,
         this.CNPJ = CNPJ
+        this.tipo = tipo
     }
 
     // Método estático para cadastrar um cliente.
-    static async cadastrarCliente(nome, cpf, cnpj) {
+    static async cadastrarCliente(nome, cpf, cnpj, tipo) {
         
         // Obtendo referências aos elementos de popup.
         const popupClose = document.getElementById('btnClosePop');
@@ -22,6 +23,7 @@ class CadCliente {
             nome,
             cpf,
             cnpj,
+            tipo,
         };
 
         // Enviando uma requisição para cadastrar o cliente.

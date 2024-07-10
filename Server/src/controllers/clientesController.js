@@ -20,7 +20,8 @@ clientesController.post('/cadCliente', async function (req, res) {
         id: req.body.id,
         nome: req.body.dados.nome,
         cpf: req.body.dados.cpf,
-        cnpj: req.body.dados.cnpj
+        cnpj: req.body.dados.cnpj,
+        tipo: req.body.dados.tipo
     };
 
     try {
@@ -33,7 +34,7 @@ clientesController.post('/cadCliente', async function (req, res) {
                 res.status(409).json({ resposta: 'Esse CPF já existe no sistema.', status: 409 });
             } else {
                 // Caso o CPF não exista, cadastra o cliente.
-                const clientecad = await Cliente.cadastrarCliente(dados.nome, dados.cpf, dados.cnpj);
+                const clientecad = await Cliente.cadastrarCliente(dados.nome, dados.cpf, dados.cnpj, dados.tipo);
                 if (clientecad.rowsAffected[0] > 0) {
                     // Retorna uma resposta de sucesso se o cliente foi cadastrado com sucesso.
                     res.status(200).json({ resposta: 'Cliente cadastrado com sucesso.', status: 200 });
@@ -49,7 +50,7 @@ clientesController.post('/cadCliente', async function (req, res) {
                 res.status(409).json({ resposta: 'Esse CNPJ já existe no sistema.', status: 409 });
             } else {
                 // Caso o CNPJ não exista, cadastra o cliente.
-                const clientecad = await Cliente.cadastrarCliente(dados.nome, dados.cpf, dados.cnpj);
+                const clientecad = await Cliente.cadastrarCliente(dados.nome, dados.cpf, dados.cnpj, dados.tipo);
                 if (clientecad.rowsAffected[0] > 0) {
                     // Retorna uma resposta de sucesso se o cliente foi cadastrado com sucesso.
                     res.status(200).json({ resposta: 'Cliente cadastrado com sucesso.', status: 200 });
